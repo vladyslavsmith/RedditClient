@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId deps.application_id
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+
+        versionCode app_versions.version_code
+        versionName app_versions.version_name
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    applicationVariants.all { variant ->
+        switch (variant.getName()) {
+            case 'debug':
+                variant.buildConfigField "String", "ENDPOINT", "\"${globalConfiguration['endpointProd']}\""
+                break
+            case 'release':
+                variant.buildConfigField "String", "ENDPOINT", "\"${globalConfiguration['endpointProd']}\""
+                break
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res/item'
+            ]
+        }
+    }
+}
+
+kotlin {
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //modules
+    implementation deps.data
+    implementation deps.domain
+
+    //dependency injection
+    kapt deps.di.daggerCompiler
+    implementation deps.di.dagger
+
+    implementation deps.stetho.runtime
+    implementation deps.stetho.http
+
+    //network
+    implementation deps.network.gsonconverter
+
+    //support
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.annotations
+    implementation deps.support.cardview
+
+    //time ago
+    implementation deps.ui.timeAgo
+
+    //glide
+    implementation deps.glide.glide
+    implementation deps.glide.glideOkHttp
+    annotationProcessor deps.glide.glideCompiler
+
+    //kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.androidExtensions
+
+    //rx
+    implementation deps.rx.rxAndroid
+    implementation deps.rx.rxJava
+    implementation deps.rx.rxPermissions
+    implementation deps.rx.rxLifecycleAndroid
+    implementation deps.rx.rxLifecycleComponents
+
+    //arch
+    implementation deps.archComponents.lifecycle
+    kapt deps.archComponents.compiler
+
+    //conductor
+    implementation deps.conductor.core
+    implementation deps.conductor.lifecycle
+    implementation deps.conductor.support
+
+}

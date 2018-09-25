@@ -1,0 +1,171 @@
+ext.deps = [:]
+def versions = [:]
+def deps = [:]
+
+deps.application_id = "vladyslav.lubenets"
+//=============================================== MODULES===========================================
+deps.data = project(':data')
+deps.domain = project(':domain')
+//============================================== BUILD =============================================
+versions.androidGradlePluginVersion = '3.1.2'
+deps.androidGradlePlugin = "com.android.tools.build:gradle:$versions.androidGradlePluginVersion"
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 28
+build_versions.compile_sdk = 28
+build_versions.build_tools = "27.0.3"
+ext.build_versions = build_versions
+
+def app_versions = [:]
+build_versions.version_code = 1
+build_versions.version_name = '1.0'
+ext.app_versions = app_versions
+//=============================================== SUPPORT ==========================================
+versions.supportVersion = "27.1.1"
+
+def support = [:]
+support.annotations = "com.android.support:support-annotations:$versions.supportVersion"
+support.appcompat = "com.android.support:appcompat-v7:$versions.supportVersion"
+support.design = "com.android.support:design:$versions.supportVersion"
+support.cardview = "com.android.support:cardview-v7:$versions.supportVersion"
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.supportVersion"
+support.supportV4 = "com.android.support:support-v4:$versions.supportVersion"
+deps.support = support
+//============================================= ARCH COMPONENTS ====================================
+versions.archVersion = '1.1.1'
+
+def archComponents = [:]
+archComponents.viewModel = "android.arch.lifecycle:viewmodel:$versions.archVersion"
+archComponents.lifecycle = "android.arch.lifecycle:extensions:$versions.archVersion"
+archComponents.compiler = "android.arch.lifecycle:compiler:$versions.archVersion"
+deps.archComponents = archComponents
+//============================================== KOTLIN ============================================
+versions.kotlinVersion = '1.2.41'
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlinVersion"
+kotlin.gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion"
+kotlin.androidExtensions = 'androidx.core:core-ktx:0.1'
+deps.kotlin = kotlin
+//============================================= CONDUCTOR ==========================================
+versions.conductorVersion = '2.1.5'
+
+def conductor = [:]
+conductor.core = "com.bluelinelabs:conductor:$versions.conductorVersion"
+conductor.lifecycle = "com.bluelinelabs:conductor-archlifecycle:$versions.conductorVersion"
+conductor.support = "com.bluelinelabs:conductor-support:$versions.conductorVersion"
+deps.conductor = conductor
+//=============================================== DI ===============================================
+versions.daggerVersion = '2.8'
+
+def di = [:]
+di.daggerCompiler = "com.google.dagger:dagger-compiler:${versions.daggerVersion}"
+di.dagger = "com.google.dagger:dagger:${versions.daggerVersion}"
+deps.di = di
+//============================================== Javax  ============================================
+versions.javaxVersion = '1'
+
+def javax = [:]
+javax.injectLibrary = "javax.inject:javax.inject:$versions.javaxVersion"
+deps.javax = javax
+//============================================== Mapper ============================================
+versions.mapStructVersion = '1.2.0.Final'
+
+def mapStruct = [:]
+mapStruct.jdk8 = "org.mapstruct:mapstruct-jdk8:$versions.mapStructVersion"
+mapStruct.processor = "org.mapstruct:mapstruct-processor:$versions.mapStructVersion"
+deps.mapStruct = mapStruct
+//=============================================== RX ===============================================
+versions.rxJavaVersion = '2.0.2'
+versions.rxAndroidVersion = '2.0.1'
+versions.rxPermissionsVersion = '0.10.2'
+versions.rxLifecycleVersion = '2.2.2'
+
+def rx = [:]
+rx.rxJava = "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
+rx.rxAndroid = "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
+rx.rxPermissions = "com.github.tbruyelle:rxpermissions:$versions.rxPermissionsVersion"
+rx.rxLifecycleAndroid = "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:$versions.rxLifecycleVersion"
+rx.rxLifecycle = "com.trello.rxlifecycle2:rxlifecycle:$versions.rxLifecycleVersion"
+rx.rxLifecycleComponents = "com.trello.rxlifecycle2:rxlifecycle-components:" +
+        "$versions.rxLifecycleVersion"
+deps.rx = rx
+//============================================== NETWORK ===========================================
+versions.okHttpVersion = '3.9.1'
+versions.retrofitVersion = '2.3.0'
+versions.retrofitGsonVersion = '2.2.0'
+versions.retrofitRxAdapterVersion = '2.2.0'
+
+def network = [:]
+network.okhttp = "com.squareup.okhttp3:okhttp:$versions.okHttpVersion"
+network.logging = "com.squareup.okhttp3:logging-interceptor:$versions.okHttpVersion"
+network.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+network.gsonconverter = "com.squareup.retrofit2:converter-gson:$versions.retrofitGsonVersion"
+network.retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitRxAdapterVersion"
+deps.network = network
+//=============================================== GLIDE ============================================
+versions.glideVersion = '4.7.1'
+versions.glideCompilerVersion = '4.7.1'
+
+def glide = [:]
+glide.glide = "com.github.bumptech.glide:glide:$versions.glideVersion"
+glide.glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glideVersion"
+glide.glideCompiler = "com.github.bumptech.glide:compiler:$versions.glideCompilerVersion"
+deps.glide = glide
+//============================================== STETHO ============================================
+versions.stethoVersion = '1.5.0'
+
+def stetho = [:]
+stetho.runtime = "com.facebook.stetho:stetho:$versions.stethoVersion"
+stetho.http = "com.facebook.stetho:stetho-okhttp3:$versions.stethoVersion"
+deps.stetho = stetho
+//============================================== MULTIDEX ==============================================
+versions.multidexVersion = '1.0.1'
+
+def multidex = [:]
+multidex.multidex = "com.android.support:multidex:$versions.multidexVersion"
+deps.multidex = multidex
+//================================================ UI ==============================================
+versions.timeAgoVersion = '4.0.1'
+
+def ui = [:]
+ui.timeAgo = "com.github.marlonlom:timeago:$versions.timeAgoVersion"
+deps.ui = ui
+//============================================== OTHER ============================================
+versions.leakcanaryVersion = '1.5.4'
+
+def other = [:]
+other.leakDebug = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanaryVersion"
+deps.other = other
+//=============================================== TESTS ============================================
+versions.jUnitVersion = '4.12'
+versions.assertJVersion = '3.8.0'
+versions.mockitoVersion = '2.+'
+
+def tests = [:]
+tests.junit = "junit:junit:$versions.jUnitVersion"
+tests.mockito = "org.mockito:mockito-core:$versions.mockitoVersion"
+tests.assertj = "org.assertj:assertj-core:$versions.assertJVersion"
+deps.tests = tests
+//============================================ REPOSITORIES ========================================
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+
+    handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://maven.fabric.io/public" }
+    handler.maven { url "https://plugins.gradle.org/m2/" }
+    handler.maven { url 'https://dl.bintray.com/kodein-framework/Kodein-DI/' }
+    handler.maven { url "http://dl.bintray.com/jetbrains/spek" }
+}
+
+ext.addRepos = this.&addRepos
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ext.deps = deps
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ext {
+    endpointProd = 'https://www.reddit.com/'
+}

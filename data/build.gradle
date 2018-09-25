@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+    }
+}
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        encoding "UTF-8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //modules
+    implementation deps.domain
+
+    //network
+    implementation deps.network.retrofit
+    implementation deps.network.retrofitRxAdapter
+    implementation deps.network.gsonconverter
+    implementation deps.network.logging
+
+    //rx
+    implementation deps.rx.rxJava
+
+    //di
+    implementation deps.javax.injectLibrary
+
+    //mapper
+    implementation deps.mapStruct.jdk8
+    annotationProcessor deps.mapStruct.processor
+
+    //glide
+    implementation deps.glide.glide
+    implementation deps.glide.glideOkHttp
+    annotationProcessor deps.glide.glideCompiler
+
+    //other
+    implementation deps.stetho.http
+
+    //support
+    implementation deps.support.annotations
+
+    //tests
+    testImplementation deps.tests.junit
+    testImplementation deps.tests.mockito
+    testImplementation deps.tests.assertj
+
+}

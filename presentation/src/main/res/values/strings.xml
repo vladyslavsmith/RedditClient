@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RedditClient</string>
+    <string name="top_thumbnail">Top item thumbnail</string>
+    <string name="no_images">No images to show in Gallery for this item</string>
+    <string name="top_list">Top list</string>
+    <string name="gallery">Gallery</string>
+    <string name="save_to_phone_gallery">Save to phone gallery</string>
+    <string name="unable_save_image_to_gallery">Unable to save image to gallery</string>
+    <string name="page_limit_reached">The top 50 entries limit reached</string>
+    <string name="image_has_been_saved_to_gallery">Image has been saved to Gallery</string>
+    <string name="unable_save_image_to_gallery_no_permissions">No permissions. Unable to save photo</string>
+    <string name="gallery_image">Gallery image</string>
+</resources>
